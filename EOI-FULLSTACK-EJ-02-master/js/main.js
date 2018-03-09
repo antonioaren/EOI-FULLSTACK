@@ -239,21 +239,36 @@ function ejercicio06(user) {
 
 
 function ejercicio07(users) {
-    console.log(users);
+    /* console.log(users); */
+    var id = 0;
     var usersValid = [];
-    var id = [];
+    var number=[];  
+    var resultado = [];
+    var errors = [];
+    var objErrors;
 
     users.forEach(user => {
-        if (ejercicio06(user).valid == true) {
-            usersValid.push(
-                {
-                    id: id,
-                    user : user
-                }
-            );
+        if (ejercicio06(user).valid) {           
+            user.id = id++;
+            usersValid.push(user);
+            number.push(user.id);                
+        }else{
+            objErrors = {
+                usuario : user,
+                errors : ejercicio06(user).errors
+            }
+           errors.push(objErrors);
         }
-
     });
+
+    resultado = {
+        item_inserted : usersValid.length,
+        ids : number,
+        with_errors: errors,
+        users_stored : usersValid
+    }
+
+    return resultado;
 }
 
 
