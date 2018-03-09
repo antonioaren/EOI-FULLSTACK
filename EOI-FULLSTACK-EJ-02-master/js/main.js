@@ -260,6 +260,7 @@ function ejercicio07(users) {
            errors.push(objErrors);
         }
     });
+    //
 
     resultado = {
         item_inserted : usersValid.length,
