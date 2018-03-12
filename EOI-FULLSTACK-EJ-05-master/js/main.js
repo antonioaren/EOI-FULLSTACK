@@ -14,7 +14,7 @@ function fotosCargadas(fotos) {
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="${photo.url}" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text"> "${photo.title}"</p>
+                    <p class="card-text"> ${photo.title}</p>
                 </div>
             </div>
         </div> 
