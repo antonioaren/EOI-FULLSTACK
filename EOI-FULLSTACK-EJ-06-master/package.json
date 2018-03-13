@@ -1,0 +1,15 @@
+{
+  "name": "eoi-fullstack-ej-06-master",
+  "version": "1.0.0",
+  "description": "Es tu turno ! Usando las técnicas y métodos de ES6 o importando librerías como lodash deberás de realizar la siguiente práctica de la manera más eficiente posible y con buen código.",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^4.18.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

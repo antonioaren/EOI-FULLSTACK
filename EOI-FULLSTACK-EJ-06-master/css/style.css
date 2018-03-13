@@ -23,6 +23,7 @@ h4 {
     display: grid;
     grid-template-columns: minmax(1rem,1fr) minmax(0, 80rem) minmax(1rem,1fr);
     grid-gap: 50px;
+        
 }
 
 .grid--fullview {
@@ -49,6 +50,15 @@ h4 {
     grid-gap: 20px;
 }
 
+#contador{
+    background-color: orange;
+    text-align: center;
+}
+
+.alejar{
+    margin-top: 40px;
+}
+
 .menu{
     background-color: grey;
 }
@@ -61,4 +71,36 @@ h4 {
     max-width: 100%;
 }
 
+ul.menu--bar{
+    list-style-type: none;    
+    /* padding: 5px; */
+ }
+ 
+ /* Padding de cada item */
+ ul.menu--bar li{
+     /* padding: 5px;  */   
+     display: inline-block;
+     text-transform: uppercase;
+     
+    }
+ 
+ ul.menu--bar li a{
+     display: inline-block;    
+     /* padding: 15px; */
+     text-decoration: none;
+     font-size: 1.5rem;     
+ }
 
+ .page--nav{
+     text-align: center;
+ }
+
+ a {
+     color: black;
+ }
+
+ .page--number{
+    font-weight: bold;
+    color: red;
+    font-size : 4rem;
+ }

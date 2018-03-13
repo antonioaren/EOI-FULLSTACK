@@ -12,21 +12,31 @@
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <h1 id="contador"></h1>        
+    </header>
+
     <main class="grid">
         <div class="grid--contentview">
             <div class="subgrid--grid">
-                
-                <aside class="">
+                <aside class="subgrid--album">
                     <div class="menu">
-                        menu
+                        <div class="alejar input-group mb-3">
+                            <input type="text" name="buscar" class="form-control" aria-label="Default" placeholder="Search" aria-describedby="inputGroup-sizing-default">
+                            <a class="btn btn-primary" onclick="buscar(event)" href="#" role="button">Buscar</a>                            
+                        </div>
                     </div>
                 </aside>
-                
+
                 <section>
-                    <div id="album" class="subgrid--album">           
+                    <div id="album" class="subgrid--album">
                     </div>
                 </section>
+            </div>
+        </div>
+        <div class="grid--contentview">
+            <div class="page--nav">
+                <ul id="lista" class="menu--bar"></ul>
             </div>
         </div>
     </main>
