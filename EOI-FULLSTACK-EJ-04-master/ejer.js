@@ -277,7 +277,7 @@ function ejer_4() {
     console.log(_.uniq(hoteles));
 }
 
-ejer_4();
+
 
 /* A partir del lodash */
 
@@ -316,6 +316,7 @@ let servidores = [
 
 function ejer_6() {
     var resultadoRepe = [];
+    console.log(servidores);
 
     servidores.forEach(servidor => {
         if (servidor.almacenan == ".mp4" || servidor.almacenan == ".png") {
@@ -323,7 +324,9 @@ function ejer_6() {
             resultadoRepe.push(puntos);
         }
     });
-
+    console.log(resultadoRepe);
     resultadoNoRepe = _.uniq(_.flatten(resultadoRepe));
     console.log(resultadoNoRepe);
 }
+
+ejer_6();

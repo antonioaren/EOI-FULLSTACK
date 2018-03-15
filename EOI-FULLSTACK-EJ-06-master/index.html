@@ -13,17 +13,26 @@
 
 <body>
     <header>
-        <h1 id="contador"></h1>        
+        <div id="Cuenta">
+        </div>
     </header>
+
+    
 
     <main class="grid">
         <div class="grid--contentview">
             <div class="subgrid--grid">
                 <aside class="subgrid--album">
                     <div class="menu">
-                        <div class="alejar input-group mb-3">
+                        <div class="alejar mb-3">
                             <input type="text" name="buscar" class="form-control" aria-label="Default" placeholder="Search" aria-describedby="inputGroup-sizing-default">
-                            <a class="btn btn-primary" onclick="buscar(event)" href="#" role="button">Buscar</a>                            
+                            <a class="btn btn-primary" onclick="buscar(event)" href="#" role="button">Buscar</a>
+                        </div>
+                        <div>
+                            <label class="">
+                                <input type="radio" name="ordenar" checked value="asc" onclick="">Nada</label>
+                            <label class="">
+                                <input type="button" name="ordenar" value="Ordenar [A-Z]" onclick="ordenar(this)"></label>
                         </div>
                     </div>
                 </aside>
@@ -34,7 +43,7 @@
                 </section>
             </div>
         </div>
-        <div class="grid--contentview">
+        <div class="grid--fullview">
             <div class="page--nav">
                 <ul id="lista" class="menu--bar"></ul>
             </div>
@@ -45,6 +54,9 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+    <script src="js/actions.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/validation.js"></script>
     <script src="js/main.js"></script>
 </body>
 
