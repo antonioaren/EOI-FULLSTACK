@@ -32,10 +32,15 @@ function pageSelected(event, numero) {
     $('#' + id).addClass('page--number');
     dibujarPantalla(vectorActual);
 }
-function buscar(event) {
+function buscarButtonClicked(event) {
     console.log("Pulsado Buscar");
-
     var palabra = $('input[name="buscar"]').val().toLowerCase();
+    buscar(palabra);    
+}
+
+function buscar(palabra) {
+    console.log("Buscando");
+    
     vectorActual = filtrarNombrePor(palabra, todos);
 
     borrarPantallaHoteles();

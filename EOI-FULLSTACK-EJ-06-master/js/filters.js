@@ -1,3 +1,4 @@
+var copiaRetorno = [];
 function exeption(error) {
     console.log("Ha pasado algo con el servidor");
 }
@@ -45,6 +46,7 @@ function filtrarNombrePor(palabra, todos) {
 
 function ordenarPorComentarios() {
     console.log("Pulsado Ordenar");
+       
     vectorActual = _.orderBy(vectorActual, ['comments.comment'], ['desc']);
     borrarPantallaHoteles();
     console.log(vectorActual);
@@ -52,5 +54,7 @@ function ordenarPorComentarios() {
 }
 
 function ordenarPorDefecto() {
-    
+    console.log("Ordenar por defecto");
+    var palabra = $('input[name="buscar"]').val().toLowerCase();
+    buscar(palabra);     
 }
