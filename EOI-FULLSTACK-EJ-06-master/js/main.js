@@ -11,16 +11,12 @@ $.get('./data/london.json')
 
 function cargarHoteles(fotos) {
     todos = limpiarDatos(fotos);
-
-    /* todos= _.uniqBy(fotos, foto=>{
-        return foto["Hotel Image"].alt;
-    }); */
-
+    
     vectorActual = todos.slice();
     dibujarPantalla(vectorActual);
 }
 function dibujarPantalla(vect) {
-
+    console.log("dibujar pantalla");
     if (vect.length == 0) {
         noResultados();
     } else {
@@ -28,7 +24,7 @@ function dibujarPantalla(vect) {
     }
 }
 function pageSelected(event, numero) {
-
+    console.log("pagina seleccionada");
     event.preventDefault();
     $('#' + id).removeClass('page--number');
     borrarPantallaHoteles();
@@ -38,10 +34,10 @@ function pageSelected(event, numero) {
     dibujarPantalla(vectorActual);
 }
 function buscar(event) {
+    console.log("Pulsado Buscar");
 
     var palabra = $('input[name="buscar"]').val().toLowerCase();
     vectorActual = filtrarNombrePor(palabra, todos);
-
 
     borrarPantallaHoteles();
     borrarContadorResultados();

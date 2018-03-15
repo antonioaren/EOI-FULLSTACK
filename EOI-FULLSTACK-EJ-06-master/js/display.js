@@ -23,12 +23,12 @@ function resultados(vect) {
         if (datos.comments.comment == "-1") {
             com = "No hay comentarios"
         } else {
-            com = datos.comments.comment;
+            com = datos.comments.comment + " comentarios";
         }
         if (datos.comments.mark == "-1") {
             punt = "No hay puntuaciones"
         } else {
-            punt = datos.comments.mark;
+            punt = "Valoracion: " + datos.comments.mark;
         }
 
         $('#album').append(`
