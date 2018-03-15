@@ -49,7 +49,7 @@ function ordenarPorComentarios() {
        
     vectorActual = _.orderBy(vectorActual, ['comments.comment'], ['desc']);
     borrarPantallaHoteles();    
-    dibujarPantalla(vectorActual);
+    dibujarPantalla(_.uniqBy(vectorActual,'title'));
 }
 
 function ordenarPorMejorValorados() {
@@ -57,7 +57,7 @@ function ordenarPorMejorValorados() {
 
     vectorActual = _.orderBy(vectorActual, ['comments.mark'], ['desc']);    
     borrarPantallaHoteles();
-    dibujarPantalla(vectorActual);    
+    dibujarPantalla(_.uniqBy(vectorActual,'title'));    
 }
 
 function ordenarPorDefecto() {
