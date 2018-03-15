@@ -50,3 +50,7 @@ function ordenarPorComentarios() {
     console.log(vectorActual);
     dibujarPantalla(vectorActual);
 }
+
+function ordenarPorDefecto() {
+    
+}
