@@ -4,7 +4,6 @@ var separar;
 var posicion = 0;
 var id = 1;
 
-
 $.get('./data/london.json')
     .then(cargarHoteles)
     .catch(exeption)

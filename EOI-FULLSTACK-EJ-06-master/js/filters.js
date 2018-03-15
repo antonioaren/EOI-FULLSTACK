@@ -12,9 +12,8 @@ function limpiarDatos(hoteles) {
         if ((hotel["Reviews Core 3"]) == undefined) {
             comentario = -1;
             puntuacion = -1;
-        } else {
-            comentario = hotel["Reviews Core 3"].text;
-            comentario = parseInt(comentario.replace(",", ""));
+        } else {            
+            comentario = parseInt(hotel["Reviews Core 3"].text.replace(",", ""));
             puntuacion = parseFloat(hotel["Reviews Core 4"].text);
         }
 
