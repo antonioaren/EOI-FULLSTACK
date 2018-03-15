@@ -1,7 +1,6 @@
 function exeption(error) {
     console.log("Ha pasado algo con el servidor");
 }
-
 function limpiarDatos(hoteles) {
     var valoresLimpios = [];
 
@@ -39,4 +38,16 @@ function limpiarDatos(hoteles) {
 
     return valoresLimpios;
 }
-
+function filtrarNombrePor(palabra,todos) {
+    return todos.filter(element => {
+        return element.title.toLowerCase().includes(palabra);
+    });    
+}
+function ordenarPorComentarios(params) {
+    
+}
+function ordenarPorComentarios() {
+    vectorActual = _.orderBy(vectorActual, ['comments.coment'], ['asc']);
+    borrarPantallaHoteles();
+    dibujarPantalla(vectorActual);
+}

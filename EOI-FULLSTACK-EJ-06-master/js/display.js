@@ -8,13 +8,11 @@ function addPages(id) {
     }
     $('#' + id).addClass('page--number');
 }
-
 function noResultados() {
     $('#album').append(`
             <h2>No ha habido ningún resultado</h2>        
         `);
 }
-
 function resultados(vect) {
     var com = "";
     var punt = "";
@@ -53,5 +51,16 @@ function resultados(vect) {
         `);
     });
     addPages(id);
+}
+function borrarPantallaHoteles() {
+    $('#album').text("");
+}
+function borrarContadorResultados() {
+    $('#Cuenta').text("");
+}
+function ponerContadorResultados(vectorActual) {
+    $('#Cuenta').append(`
+            <h1 id="contador">Resultado de la busquedad: ${vectorActual.length}</h1>                        
+        `);
 }
 

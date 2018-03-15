@@ -1,15 +1,15 @@
 var todos;
-var vectorActual;
+var vectorActual = [];
 var separar;
-
 var posicion = 0;
 var id = 1;
 
+
 $.get('./data/london.json')
-    .then(fotosCargadas)
+    .then(cargarHoteles)
     .catch(exeption)
 
-function fotosCargadas(fotos) {
+function cargarHoteles(fotos) {
     todos = limpiarDatos(fotos);
 
     /* todos= _.uniqBy(fotos, foto=>{
@@ -19,57 +19,35 @@ function fotosCargadas(fotos) {
     vectorActual = todos.slice();
     dibujarPantalla(vectorActual);
 }
-
 function dibujarPantalla(vect) {
-    
+
     if (vect.length == 0) {
         noResultados();
     } else {
-        resultados(vect);        
+        resultados(vect);
     }
 }
-
-
-
 function pageSelected(event, numero) {
+
     event.preventDefault();
     $('#' + id).removeClass('page--number');
-    $('#album').text("");
+    borrarPantallaHoteles();
     posicion = numero - 1;
     id = numero;
     $('#' + id).addClass('page--number');
     dibujarPantalla(vectorActual);
 }
-
 function buscar(event) {
-    event.preventDefault();
+
     var palabra = $('input[name="buscar"]').val().toLowerCase();
-    
-
-    var filtrar = todos.filter(element => {
-        
-        var filtrados = element.title.toLowerCase().includes(palabra);        
-        return filtrados;
-    });
+    vectorActual = filtrarNombrePor(palabra, todos);
 
 
-    $('#album').text("");
-    vectorActual = filtrar;
-    $('#Cuenta').text("");
+    borrarPantallaHoteles();
+    borrarContadorResultados();
 
     if (palabra) {
-        $('#Cuenta').append(`
-            <h1 id="contador">Resultado de la busquedad: ${vectorActual.length}</h1>                        
-        `);
+        ponerContadorResultados(vectorActual);
     }
     dibujarPantalla(vectorActual);
 }
-
-function ordenar(elemento) {
-    vectorActual = _.orderBy(vectorActual, ['comments.coment'], ['des']);
-    $('#album').text("");
-    dibujarPantalla(vectorActual);
-}
-
-
-
