@@ -48,9 +48,16 @@ function ordenarPorComentarios() {
     console.log("Pulsado Ordenar");
        
     vectorActual = _.orderBy(vectorActual, ['comments.comment'], ['desc']);
-    borrarPantallaHoteles();
-    console.log(vectorActual);
+    borrarPantallaHoteles();    
     dibujarPantalla(vectorActual);
+}
+
+function ordenarPorMejorValorados() {
+    console.log("Pulsado mejor valorados");
+
+    vectorActual = _.orderBy(vectorActual, ['comments.mark'], ['desc']);    
+    borrarPantallaHoteles();
+    dibujarPantalla(vectorActual);    
 }
 
 function ordenarPorDefecto() {
