@@ -3,7 +3,7 @@ var axios = require('axios');
 var cheerio = require('cheerio');
 var _ = require("lodash");
 
-const token = "535476274:AAGMkuhD7GvBmFka7av5YcOoo8A6RXBd2O0";
+const token = "";
 const bot = new TelegramBotClient(token, { polling: true });
 var url = "https://resultados.as.com/quiniela/2017_2018/jornada_"
 
