@@ -2,32 +2,11 @@ const http = require('http');
 const express = require('express');
 const app = express();
 const _ = require('lodash');
-app.use(express.json());
+const fs = require('fs');
 
-var users = [{
-    id: guid(),
-    username: "antonioaren",
-    name: "Pedro",
-    email: "antonioaren@hotmail.com",
-    tweets: [{
-        id: guid(),
-        text: "Mal día, mañana seré más productivo",
-        owner: "antonioaren",
-        createAt: Date.now() + 1
-    }]
-},
-{
-    id: guid(),
-    username: "davidGC",
-    name: "David",
-    email: "davidgc@gmail.com",
-    tweets: [{
-        id: guid(),
-        text: "Me lo estoy pasando pipa",
-        owner: "davidGC",
-        createAt: Date.now()
-    }]
-}];
+app.use(express.json());
+var users = JSON.parse(fs.readFileSync('users.json'));
+console.log(users);
 
 /* --------------------------------------------------------------------------------------------------------- */
 
@@ -50,6 +29,7 @@ app.post('/users', function (req, res) {
     }
 
     users.push(userNuevo);
+    fs.writeFile('users.json',JSON.stringify(users));
     res.json(users);
 })
 
@@ -83,6 +63,7 @@ app.delete('/users/:username', function (req, res) {
             users.splice(i, 1);
         }
     }
+    fs.writeFile('users.json',JSON.stringify(users));
     res.json(users);
 })
 
@@ -100,15 +81,16 @@ app.patch('/users/:username', function (req, res) {
             }
         }
     }
+    fs.writeFile('/users.json',JSON.stringify(users));
     res.json(users);
 })
 
 app.post('/users/:username/tweet', function (req, res) {
     const nickName = req.params.username;
     const newTweet = req.body;
-    
+
     for (var i = 0; i < users.length; i++) {
-        if (users[i].username == nickName) {           
+        if (users[i].username == nickName) {
 
             objetoTweet = {
                 id: guid(),
@@ -120,6 +102,7 @@ app.post('/users/:username/tweet', function (req, res) {
             users[i].tweets.push(objetoTweet);
         }
     }
+    fs.writeFile('/users.json',JSON.stringify(users));
     res.json(users);
 })
 
@@ -131,7 +114,6 @@ app.get('/users/tweet', function (req, res) {
         var tweetsOrderBy = _.orderBy(tweets, 'createAt', value);
         return res.json(tweetsOrderBy);
     }
-
     res.json(tweets);
 })
 
@@ -149,7 +131,7 @@ app.delete('/users/tweet/:id', function (req, res) {
     users.forEach(user => {
         user.tweets = user.tweets.filter(filtro => filtro.id != idTweet);
     });
-
+    fs.writeFile('/users.json',JSON.stringify(users));
     res.json(users);
 })
 
