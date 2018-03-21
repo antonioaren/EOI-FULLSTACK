@@ -1,4 +1,4 @@
-/*var axios = require('axios');
+/* var axios = require('axios');
 var cheerio = require('cheerio');
 var urlWeb = 'https://tiendas.mediamarkt.es/smartphones-libres';
 
@@ -40,10 +40,10 @@ axios.get(urlWeb).then(response => {
         }
         informacion.push(objeto);      
     }
+}
 
 
-
-
+ */
 
 
 
@@ -71,7 +71,7 @@ const arrayMoviles = [];axios.get(urlMM).then(response => {    const $ = cheerio
    console.log(arrayMoviles);
 }); */
 
-var axios = require('axios');
+/* var axios = require('axios');
 const cheerio = require('cheerio');
 
 const arrayMoviles = [];
@@ -101,3 +101,22 @@ for (let i = 1; i < 10; i++) {
             .catch(error => console.log("ERRORRRRRRRRRRRRR", error));
     }, 1000 * i);
 }
+ */
+
+
+var url = "https://resultados.as.com/quiniela/2017_2018/jornada_44/"
+var axios = require('axios');
+var cheerio = require('cheerio');var array = [];axios.get(url).then(response => {
+   const $ = cheerio.load(response.data);
+   //var a = $(".partido .nombre-equipo").text();
+   var a = $(".partido .nombre-partido").each((index,element) => {
+       console.log($(element).text());
+       
+      // console.log(index,$(element).text());
+      /*  partido.equipoLocal =$(element).find($(".local")).text().replace("\n","").replace("\n","").trim();
+       partido.equipoVisitante =$(element).find($(".visitante")).text().replace("\n","").replace("\n","");
+       partido.finalizad
+       array.push(partido);        */
+   });
+   
+})
