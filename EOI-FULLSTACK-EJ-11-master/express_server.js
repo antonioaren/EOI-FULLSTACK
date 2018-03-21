@@ -13,7 +13,7 @@ var users = [{
         id: guid(),
         text: "Mal día, mañana seré más productivo",
         owner: "antonioaren",
-        createAt: Date.now()+1
+        createAt: Date.now() + 1
     }]
 },
 {
@@ -37,9 +37,43 @@ app.get('/users', function (req, res) {
 
 app.post('/users', function (req, res) {
     const newUser = req.body;
-    users.push(newUser);
-    res.json(newUser);
+
+    if (validacion(newUser) == false)
+        return res.send("Error!")
+
+    var userNuevo = {
+        id: guid(),
+        username: newUser.username,
+        name: newUser.name,
+        email: newUser.email,
+        tweets: []
+    }
+
+    users.push(userNuevo);
+    res.json(users);
 })
+
+//Validacion para nuevo usuario.
+function validacion(newUser) {
+    var isCorrect = true;
+
+    if (newUser.username == undefined) {
+        isCorrect = false;
+    } else {
+        if (users.find(user => user.username.toLowerCase() === newUser.username.toLowerCase())) {
+            isCorrect = false;
+        }
+    }
+
+    if (newUser.email == undefined) {
+        isCorrect = false;
+    } else {
+        if ((newUser.email.indexOf('@') && newUser.email.indexOf('.') == -1)) {
+            isCorrect = false;
+        }
+    }
+    return isCorrect;
+}
 
 app.delete('/users/:username', function (req, res) {
     const userToDelete = req.params.username;
@@ -72,71 +106,52 @@ app.patch('/users/:username', function (req, res) {
 app.post('/users/:username/tweet', function (req, res) {
     const nickName = req.params.username;
     const newTweet = req.body;
-
+    
     for (var i = 0; i < users.length; i++) {
-        if (users[i].username == nickName) {
-            users[i].tweets.push({
+        if (users[i].username == nickName) {           
+
+            objetoTweet = {
                 id: guid(),
                 text: newTweet.tweet,
                 owner: nickName,
                 createAt: Date.now()
-            });
+            }
+
+            users[i].tweets.push(objetoTweet);
         }
     }
     res.json(users);
-    //res.send(); para resoponder texto al cliente.
 })
 
-app.get('/users/tweet', function (req, res) { 
-    //Faltan query params
-
+app.get('/users/tweet', function (req, res) {
+    var value = req.query.order;
     var tweets = _.flatten(users.map(user => user.tweets));
-    var tweetsOrderBy = _.orderBy(tweets,'createAt','asc');
 
-    res.json(tweetsOrderBy);
+    if (value != undefined) {
+        var tweetsOrderBy = _.orderBy(tweets, 'createAt', value);
+        return res.json(tweetsOrderBy);
+    }
+
+    res.json(tweets);
 })
 
 app.get('/users/tweet/:id', function (req, res) {
     const idTweet = req.params.id;
-    console.log(idTweet);
 
-    users.forEach(user => {
-        user.tweets.forEach(tweet => {
-            console.log(tweet.id);
-            if (tweet.id == idTweet) {
-                res.json(tweet);
-            }
-        });
-    });
+    var twitters = _.flatten(users.map(user => user.tweets));
+    var idTwitter = twitters.find(twit => twit.id == idTweet);
+    res.json(idTwitter);
 })
 
 app.delete('/users/tweet/:id', function (req, res) {
     const idTweet = req.params.id;
 
     users.forEach(user => {
-        for (let i = 0; i < user.tweets.length; i++) {
-            if (user.tweets[i].id == idTweet) {
-                user.tweets.splice(i, 1);
-            }
-        }
+        user.tweets = user.tweets.filter(filtro => filtro.id != idTweet);
     });
+
     res.json(users);
 })
-
-app.get('/users/tweet', (req, res) => {
-    const wayToOrder = req.query.params;
-    console.log("Aqui debe haber el valor que pasamos por query params: " + wayToOrder);
-    var onlyTweets = users.map(user => user.tweets);
-    console.log(onlyTweets);
-})
-
-
-
-
-
-
-
-
 
 /* --------------------------------------------------------------------------------------------------------- */
 
